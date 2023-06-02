@@ -1,0 +1,24 @@
+models:
+  Category:
+    name: string:400
+    description: nullable longtext
+    parent_id: id:category
+
+  Product:
+    name: string:400
+    description: nullable longtext
+    category_id: id:category
+    sell_price: string:400
+    buy_price: string:400
+    unit: nullable string:400
+    barcode: nullable string:400
+    sku: string:400
+
+  Customer:
+    fullname: string:400
+    phone: string:11
+    tel: nullable string:10
+    address: nullable longtext
+
+controllers:
+# ...

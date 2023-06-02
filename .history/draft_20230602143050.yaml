@@ -1,0 +1,76 @@
+models:
+  Category:
+    name: string:400
+    description: nullable longtext
+    parent_id: id:category
+
+  Product:
+    name: string:400
+    image_url: nullable longtext
+    description: nullable longtext
+    category_id: id:category
+    sell_price: string:400
+    buy_price: string:400
+    unit: nullable string:400
+    barcode: nullable string:400
+    sku: uuid
+
+  Customer:
+    fullname: string:200
+    phone: string:11
+    tel: nullable string:10
+    address: nullable longtext
+
+  Invoice:
+    created_by: id:user
+    customer_id: id:customer
+    total: default:0 nullable
+    status: DRAFT,REFUND,PAID default:DRAFT
+
+  InvoiceItem:
+    invoice_id: id:invoice
+    product_id: id:product
+    price: default:0 nullable
+    quantity: default:1
+    total: default:0 nullable
+
+  Purchase:
+    created_by: id:user
+    user_id: id:customer
+    total: default:0 nullable
+    status: DRAFT,REFUND,PAID default:DRAFT
+
+  PurchaseItem:
+    created_by: id:user
+    total: default:0 nullable
+    status: DRAFT,REFUND,PAID default:DRAFT
+
+  Widget: softDeletes
+
+controllers:
+  Category:
+    index:
+      query: all
+      render: category.index with:categories
+    create:
+      render: category.create
+    store:
+      validate: category
+      save: category
+      flash: category.name
+      redirect: category.index
+
+  Product:
+    index:
+      query: all
+      render: product.index with:products
+    create:
+      render: product.create
+    store:
+      validate: product
+      save: product
+      flash: product.name
+      redirect: product.index
+    show:
+      query: all:products
+      render: product.show with:product,catefory

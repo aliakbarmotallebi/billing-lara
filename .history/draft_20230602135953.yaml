@@ -1,0 +1,30 @@
+models:
+  Category:
+    name: string:400
+    description: nullable longtext
+    parent_id: id:category
+    Widget: softDeletes
+
+  Product:
+    name: string:400
+    description: nullable longtext
+    category_id: id:category
+    sell_price: string:400
+    buy_price: string:400
+    unit: nullable string:400
+    barcode: nullable string:400
+    sku: uuid string:400
+    Widget: softDeletes
+
+  Customer:
+    fullname: string:200
+    phone: string:11
+    tel: nullable string:10
+    address: nullable longtext
+    Widget: softDeletes
+
+controllers:
+  Product:
+    index:
+      query: all
+      render: product.index with:products

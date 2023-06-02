@@ -1,0 +1,58 @@
+created:
+    - app/Http/Controllers/CategoryController.php
+    - app/Http/Controllers/CustomerController.php
+    - app/Http/Controllers/InvoiceController.php
+    - app/Http/Controllers/PurchaseController.php
+    - app/Http/Controllers/ProductController.php
+    - database/factories/CategoryFactory.php
+    - database/factories/ProductFactory.php
+    - database/factories/CustomerFactory.php
+    - database/factories/InvoiceFactory.php
+    - database/factories/InvoiceItemFactory.php
+    - database/factories/PurchaseFactory.php
+    - database/factories/PurchaseItemFactory.php
+    - database/migrations/2023_06_02_110917_create_categories_table.php
+    - database/migrations/2023_06_02_110918_create_products_table.php
+    - database/migrations/2023_06_02_110919_create_customers_table.php
+    - database/migrations/2023_06_02_110920_create_invoices_table.php
+    - database/migrations/2023_06_02_110921_create_invoice_items_table.php
+    - database/migrations/2023_06_02_110922_create_purchases_table.php
+    - database/migrations/2023_06_02_110923_create_purchase_items_table.php
+    - app/Models/Category.php
+    - app/Models/Product.php
+    - app/Models/Customer.php
+    - app/Models/Invoice.php
+    - app/Models/InvoiceItem.php
+    - app/Models/Purchase.php
+    - app/Models/PurchaseItem.php
+    - tests/Feature/Http/Controllers/CategoryControllerTest.php
+    - tests/Feature/Http/Controllers/CustomerControllerTest.php
+    - tests/Feature/Http/Controllers/InvoiceControllerTest.php
+    - tests/Feature/Http/Controllers/PurchaseControllerTest.php
+    - tests/Feature/Http/Controllers/ProductControllerTest.php
+    - app/Http/Requests/CustomerStoreRequest.php
+    - app/Http/Requests/InvoiceStoreRequest.php
+    - app/Http/Requests/PurchaseStoreRequest.php
+    - resources/views/customer/index.blade.php
+    - resources/views/customer/create.blade.php
+    - resources/views/invoice/index.blade.php
+    - resources/views/invoice/create.blade.php
+    - resources/views/purchase/index.blade.php
+    - resources/views/purchase/create.blade.php
+updated:
+    - routes/web.php
+skipped:
+    - resources/views/category/index.blade.php
+    - resources/views/category/create.blade.php
+    - resources/views/product/index.blade.php
+    - resources/views/product/create.blade.php
+    - resources/views/product/show.blade.php
+models:
+    Category: { name: 'string:400', description: 'nullable longtext', parent_id: 'id:category' }
+    Customer: { fullname: 'string:200', phone: 'string:11', tel: 'nullable string:10', address: 'nullable longtext' }
+    Invoice: { created_by: 'id:user', customer_id: 'id:customer', total: 'default:0 nullable', status: 'DRAFT,REFUND,PAID default:DRAFT' }
+    InvoiceItem: { invoice_id: 'id:invoice', product_id: 'id:product', price: 'default:0 nullable', quantity: 'default:1', total: 'default:0 nullable' }
+    Product: { name: 'string:400', image_url: 'nullable longtext', description: 'nullable longtext', category_id: 'id:category', sell_price: 'string:400', buy_price: 'string:400', unit: 'nullable string:400', barcode: 'nullable string:400', sku: uuid }
+    Purchase: { created_by: 'id:user', user_id: 'id:customer', total: 'default:0 nullable', status: 'DRAFT,REFUND,PAID default:DRAFT' }
+    PurchaseItem: { created_by: 'id:user', total: 'default:0 nullable', status: 'DRAFT,REFUND,PAID default:DRAFT' }
+    User: {  }
