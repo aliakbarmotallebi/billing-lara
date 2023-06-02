@@ -6,9 +6,9 @@
         <title>Laravel</title>
         @vite('resources/css/app.css')
     </head>
-    <body class="flex justify-center items-center h-screen">
+    <body>
       <h1 class="text-3xl font-bold underline">
-        سلام دوست عزیز
+        سلام
       </h1>
     </body>
 </html>
