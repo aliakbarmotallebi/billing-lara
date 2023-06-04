@@ -14,22 +14,11 @@ return new class extends Migration
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('invoice_id');
-            $table->foreign('invoice_id')
-                ->references('id')
-                ->on('invoices')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')
-                ->references('id')
-                ->on('products')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
             $table->string('price')->default('0')->nullable();
             $table->string('quantity')->default('1');
             $table->string('total')->default('0')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

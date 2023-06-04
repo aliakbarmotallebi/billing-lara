@@ -20,10 +20,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $user = new User;
-        $user->username = 'admin';
-        $user->password = bcrypt('123456789');
-        $user->save();
+        User::create([
+            'username' => 'amir',
+            'password' => bcrypt('123456789')
+        ]);
     }
 
     /**

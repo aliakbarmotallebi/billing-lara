@@ -11,22 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invoices', function (Blueprint $table) {
-            $table->id()->from(3000);
+        Schema::create('purchases', function (Blueprint $table) {
+            $table->id()->from(4000);
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')
-                ->references('id')
-                ->on('customers')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
             $table->string('total')->default('0')->nullable();
-            $table->enum('status', [
+            $table->string('status', [
                 'STATUS_DRAFT',
                 'STATUS_COMPLETED',
                 'STATUS_REJECTED'
@@ -41,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('purchases');
     }
 };

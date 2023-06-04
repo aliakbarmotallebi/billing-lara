@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('tel', 10)->nullable();
             $table->longText('address')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

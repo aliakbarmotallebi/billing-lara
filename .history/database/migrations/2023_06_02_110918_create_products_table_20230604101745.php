@@ -28,7 +28,6 @@ return new class extends Migration
             $table->string('barcode', 400)->nullable();
             $table->uuid('sku');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

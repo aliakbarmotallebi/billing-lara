@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string('quantity')->default('1');
             $table->string('total')->default('0')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

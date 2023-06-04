@@ -11,25 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchase_items', function (Blueprint $table) {
-            $table->id();
-            $table->string('invoice_number_physical')->nullable();
-            $table->string('company_name')->nullable();
-            $table->unsignedBigInteger('purchase_id');
-            $table->foreign('purchase_id')
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->id()->from(3000);
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')
                 ->references('id')
-                ->on('purchases')
+                ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')
                 ->references('id')
-                ->on('products')
+                ->on('customers')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->string('price')->default('0')->nullable();
-            $table->string('quantity')->default('1');
             $table->string('total')->default('0')->nullable();
+            $table->string('status', [
+                'STATUS_DRAFT',
+                'STATUS_COMPLETED',
+                'STATUS_REJECTED'
+            ])->default('STATUS_DRAFT');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -40,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchase_items');
+        Schema::dropIfExists('invoices');
     }
 };

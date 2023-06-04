@@ -20,7 +20,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('categories')
                 ->nullOnDelete()
-                ->cascadeOnUpdate();
+                ->cascadeOnUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

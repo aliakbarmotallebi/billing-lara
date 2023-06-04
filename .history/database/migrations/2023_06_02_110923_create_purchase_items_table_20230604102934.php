@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('purchase_items', function (Blueprint $table) {
             $table->id();
-            $table->string('invoice_number_physical')->nullable();
-            $table->string('company_name')->nullable();
             $table->unsignedBigInteger('purchase_id');
             $table->foreign('purchase_id')
                 ->references('id')
@@ -31,7 +29,6 @@ return new class extends Migration
             $table->string('quantity')->default('1');
             $table->string('total')->default('0')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
